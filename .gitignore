@@ -1,0 +1,43 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+dist/
+downloads/
+.eggs/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Django stuff
+*.log
+db.sqlite3
+media/
+
+# Static files (if collected locally)
+staticfiles/
+
+# Migrations (optional - usually keep migrations in git)
+# */migrations/*
+# !*/migrations/__init__.py
+
+
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo

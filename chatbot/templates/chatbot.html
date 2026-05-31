@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Styles -->
+
+    <style>
+        body {
+                background: url("{% static 'images/images (7).jpeg' %}");
+                background-size: cover;
+                background-repeat: no-repeat;
+                font-family: Arial;
+        }
+        .container {
+            max-width: 100%;
+            background: transparent;
+            padding: 20px;
+            border-radius: 10px;
+            margin: auto;
+
+        }
+        
+        .chat-box {
+            height: 70vh;
+            overflow-y: auto;
+            margin: 20px;
+            width: 100%;
+        }
+        .q { 
+            color: rgb(0, 0, 0); 
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 10px;
+            width: 40%;
+            margin: 10px; 
+        }
+        .a { 
+            color: rgb(0, 0, 0);
+            width: 45%;
+            margin: 10px; 
+            justify-self: right;
+            align-items: right;
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 10px;
+            line-height: 40px;
+        
+            }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #chat-box { 
+            width: 50%; 
+            padding: 10px; 
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            justify-self: center;
+            align-self: center;
+            display: flex;
+        }
+        #btn-ask{
+            padding:10px;
+            width:100px;
+            background-color: bisque;
+            border-radius: 10px;
+            border: none;
+            justify-self: center;
+            align-self: center;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin-top: 10px;
+
+        }
+
+    </style>
+
+
+<!-- container for chatbot -->
+
+<div class="container">
+    <h2>💬 Chat with your document</h2>
+
+    <!-- Success message -->
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: green;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Error messages-->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+            <button type="button"><a href="{% url 'home' %}">Upload file to process</a></button>
+    {% endif %}
+
+     <!-- Chat messages will be shown here  -->
+    <div class="chat-box">
+        {% for chat in chats %}
+            <div class="q"> {{ chat.question }}</div>
+            <div class="a"> {{ chat.answer }}</div>
+        {% empty %}
+            <p>No questions asked yet.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Chat with AI -->
+    <form method="POST" action="{% url 'chat' %}">
+        {% csrf_token %}
+        <input type="text" name="question" id="chat-box" placeholder="Ask something..." required>
+        <button type="submit" id="btn-ask">Ask</button>
+    </form>
+
+{% endblock %}

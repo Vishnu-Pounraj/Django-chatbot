@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: url("{% static 'images/images.jpeg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 50%;
+        margin: 50px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 5px rgba(74,144,226,0.3);
+    }
+
+    button {
+        padding: 12px;
+        background: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #357ab8;
+    }
+
+    hr {
+        margin: 25px 0;
+        border: none;
+        border-top: 1px solid #eee;
+    }
+
+    p {
+        font-size: 14px;
+        color: rgb(142, 67, 199);
+        font-weight: bold;
+    }
+
+    h3 {
+        color: #01a55b;
+        margin-top: 20px;
+    }
+
+    .answer-box {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #4a90e2;
+    }
+</style>
+
+
+<div class="container">
+    <form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="url" placeholder="Enter Website URL">
+    <button type="submit">Get Website</button>
+</form>
+
+{% if status %}
+    <p style="color:rgb(0, 53, 128)">{{ status }}</p>
+{% endif %}
+
+<hr>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="question" placeholder="Ask question">
+    <button type="submit">Ask</button>
+</form>
+
+{% if answer %}
+    <h3>WebBot:</h3>
+    <p>{{ answer }}</p>
+{% endif %}
+
+</div>
+
+
+{% endblock %}

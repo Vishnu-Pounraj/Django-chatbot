@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Styles Form container -->
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient( 120deg, rgb(179, 41, 41) , rgb(233, 69, 205) );
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form {
+            background: transparent;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.612);
+            backdrop-filter: 10px 20px ;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-header h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #ffffff;
+        }
+
+        .text-input,
+        .password-input {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #4facfe;
+            box-shadow: 0 0 5px rgba(79,172,254,0.5);
+        }
+
+        .btn {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 50%;
+            padding: 12px;
+            background: #4facfe;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #007bff;
+        }
+
+        .extra {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .extra a {
+            color: #4facfe;
+            text-decoration: none;
+        }
+
+        .extra a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+
+<!-- End of Styles -->
+
+<!-- Form container -->
+
+ 
+
+<div class="container">
+    <div class="login-form">
+        <div class="form-header">
+            <h1>Welcome Back</h1>
+        </div>
+
+        <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
+
+            <div class="text-input">
+                <input type="text" name="username" id="username" placeholder="Username" required>
+            </div>
+
+            <div class="password-input">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+
+            <div class="btn">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- End Form Container -->
+{% endblock %}
